@@ -1,0 +1,228 @@
+
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Cliente c = new Cliente ("José", 15, "Masculino", 1475.5, 1985);
+        Empregado e = new Empregado("Carlos", 35, "Masculino", 1256.5, "123456E");
+        Gerente g = new Gerente("Antônio", 25, "Masculino", 7856.75, "54321G", "Setor de Vendas");
+        Vendedor v = new Vendedor("Luisa", 23,"Feminino",2255.5,"123123V",1250.5, 15);
+        
+        
+        System.out.println(c);
+        System.out.println(e);
+        System.out.println(g);
+        System.out.println(v);
+    }
+    
+}
+
+
+public class Pessoa {
+    
+    private String nome;
+    private int idade;
+    private String sexo;
+    
+    public Pessoa (String nome, int idade, String sexo){
+        
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+    
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    @Override
+    public String toString() {
+        return "nome=" + nome + ", idade=" + idade + ", sexo=" + sexo;
+    }
+    
+}
+
+
+
+public class Empregado extends Pessoa {
+    
+    private double salario;
+    private String matricula;
+    
+    public Empregado (String nome, int idade, String sexo, double salario, String matricula){
+    
+        super(nome, idade, sexo);
+        this.salario = salario;
+        this.matricula = matricula;
+    }
+    
+    public double valorInss () {
+        
+        return salario * 0.11;
+   
+    }
+        
+    public double getSalario(){
+    
+        return salario - valorInss();
+    }
+    
+    public void setSalario (double salario){
+    
+        this.salario = salario;
+    }
+    
+    public String getMatricula(){
+    
+        return matricula;
+    
+    }
+    
+    public void setMatricula (String matricula){
+    
+        this.matricula = matricula;
+    
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                " Ocupação=Empregado " + " salario=" + salario + ", matricula=" + matricula + " INSS=" +valorInss();
+    }
+    
+}
+
+
+public class Cliente extends Pessoa{
+    
+    private double valorDivida;
+    private int anoNasc;
+    
+    public Cliente (String nome, int idade, String sexo, double valorDivida, int anoNasc){
+    
+        super (nome, idade, sexo);
+        this.valorDivida = valorDivida;
+        this.anoNasc = anoNasc;
+    }
+    
+    public double getValorDivida(){
+        
+        return valorDivida;
+    
+    }
+   
+    public void setValorDivida (double valorDivida){
+    
+        this.valorDivida = valorDivida;
+    
+    }
+    
+    public int getAnoNasc(){
+    
+        return anoNasc;
+        
+    }
+    
+    public void setAnoNasc(int anoNasc){
+    
+        this.anoNasc = anoNasc;
+    
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Ocupação=Cliente " + "valorDivida=" + valorDivida + ", anoNasc=" + anoNasc;
+    }
+    
+}
+
+
+
+public class Gerente extends Empregado {
+    
+    private String nomeGerencia;
+    
+    public Gerente (String nome, int idade, String sexo, double salario, String matricula, String nomeGerencia){
+
+    super(nome, idade, sexo, salario, matricula);
+    this.nomeGerencia = nomeGerencia;
+  }
+
+    public String getNomeGerencia() {
+        return nomeGerencia;
+    }
+
+    public void setNomeGerencia(String nomeGerencia) {
+        this.nomeGerencia = nomeGerencia;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + 
+                "Cargo=Gerente " + "nomeGerencia=" + nomeGerencia;
+    }
+    
+    
+}
+
+
+public class Vendedor extends Empregado {
+    
+    private double valorVendas;
+    private int qntVendas;
+    
+    public Vendedor (String nome, int idade, String sexo, double salario, String matricula, double valorVendas, int qntVendas){
+    
+        super(nome,idade,sexo,salario,matricula);
+        this.valorVendas = valorVendas;
+        this.qntVendas = qntVendas;
+    }
+
+    public double getValorVendas() {
+        return valorVendas;
+    }
+
+    public void setValorVendas(double valorVendas) {
+        this.valorVendas = valorVendas;
+    }
+
+    public int getQntVendas() {
+        return qntVendas;
+    }
+
+    public void setQntVendas(int qntVendas) {
+        this.qntVendas = qntVendas;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Cargo=Vendedor " + " valorVendas= " + valorVendas + ", qntVendas=" + qntVendas;
+    }
+    
+    
+    
+}
+
