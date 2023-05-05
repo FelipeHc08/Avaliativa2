@@ -1,0 +1,186 @@
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        Pizzas p = new Pizzas ("Laís", "Rua 12", "98765-4321", 1, "19:17", "19:56", "Carlos", "Calabresa", "Grande","Borda queijo", "Coca 2L", 87.50);
+    
+        System.out.println(p);
+    }
+    
+}
+
+
+
+public class Pedido extends Cliente{
+    
+    private int numComanda;
+    private String horarioRealizado;
+    private String horarioEntrega;
+    private String nomeEntregador;
+    
+    public Pedido (String nome, String endereco, String telefone, int numComanda, String horarioRealizado, String horarioEntrega, String nomeEntregador){
+    
+        super(nome, endereco, telefone);
+        this.numComanda=numComanda;
+        this.horarioRealizado = horarioRealizado;
+        this.horarioEntrega = horarioEntrega;
+        this.nomeEntregador = nomeEntregador;
+    }
+
+    public int getNumComanda() {
+        return numComanda;
+    }
+
+    public void setNumComanda(int numComanda) {
+        this.numComanda = numComanda;
+    }
+
+    public String getHorarioRealizado() {
+        return horarioRealizado;
+    }
+
+    public void setHorarioRealizado(String horarioRealizado) {
+        this.horarioRealizado = horarioRealizado;
+    }
+
+    public String getHorarioEntrega() {
+        return horarioEntrega;
+    }
+
+    public void setHorarioEntrega(String horarioEntrega) {
+        this.horarioEntrega = horarioEntrega;
+    }
+
+    public String getNomeEntregador() {
+        return nomeEntregador;
+    }
+
+    public void setNomeEntregador(String nomeEntregador) {
+        this.nomeEntregador = nomeEntregador;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Pedido:" + "numComanda=" + numComanda + ", horarioRealizado=" + horarioRealizado + ", horarioEntrega=" + horarioEntrega + ", nomeEntregador=" + nomeEntregador;
+    }
+    
+    
+    
+}
+
+
+public class Pizzas extends Pedido{
+    private String sabor;
+    private String tamanho;
+    private String borda;
+    private String bebida;
+    private double valor;
+    
+    public Pizzas (String nome, String endereco, String telefone, int numComanda, String horarioRealizado, String horarioEntrega, String nomeEntregador, String sabor, String tamanho, String borda, String bebida, double valor){
+    
+        super(nome, endereco, telefone, numComanda, horarioRealizado, horarioEntrega, nomeEntregador);
+        this.sabor = sabor;
+        this.tamanho = tamanho;
+        this.borda = borda;
+        this.bebida = bebida;
+        this.valor = valor;
+    }
+
+    public String getSabor() {
+        return sabor;
+    }
+
+    public void setSabor(String sabor) {
+        this.sabor = sabor;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public String getBorda() {
+        return borda;
+    }
+
+    public void setBorda(String borda) {
+        this.borda = borda;
+    }
+
+    public String getBebida() {
+        return bebida;
+    }
+
+    public void setBebida(String bebida) {
+        this.bebida = bebida;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " sabor=" + sabor + ", tamanho=" + tamanho + ", borda=" + borda + ", bebida=" + bebida + ", valor= R$" + valor;
+    }
+    
+}
+
+
+
+public class Cliente {
+    
+    private String nome;
+    private String endereco;
+    private String telefone;
+
+    
+    public Cliente(String nome, String endereco, String telefone){
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+    
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente:" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone;
+    }
+    
+    
+    
+}
+
