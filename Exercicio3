@@ -1,0 +1,265 @@
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Empregado e = new Empregado ("Lucia", "98765-4321", "Rua 1", 12345, 1245.5);
+        Administrador a = new Administrador ("José", "98765-4322", "Rua 2", 12346, 2245.5, 1500.0);
+        Operario o = new Operario("Antônio","98765-4323","Rua 3",123457,1567.7,150.0,300.0);
+        Vendedor v = new Vendedor("Andressa","98765-4324","Rua 4",123458,1697.7,861.0,2500.0);
+        
+        
+        System.out.println(e);
+        System.out.println(a);
+        System.out.println(o);
+        System.out.println(v);
+        
+    }
+    
+}
+
+
+public class Administrador extends Empregado{
+    
+    private double ajudaDeCusto;
+    
+    public Administrador(String nome, String telefone, String endereco, int codigoSetor, double salarioBase, double ajudaDeCusto){
+   
+        super(nome, telefone, endereco, codigoSetor, salarioBase);
+        this.ajudaDeCusto = ajudaDeCusto;
+    }
+
+    public double getAjudaDeCusto() {
+        return ajudaDeCusto;
+    }
+
+    public void setAjudaDeCusto(double ajudaDeCusto) {
+        this.ajudaDeCusto = ajudaDeCusto;
+    }
+    @Override
+     public double calcularSalario(double salarioTotal){
+        return salarioBase + ajudaDeCusto;
+    }
+
+    @Override
+    public String toString() {
+        double salarioTotal = calcularSalario(salarioBase + ajudaDeCusto);
+        return super.toString()
+                + " ocupação= Admnistrador " + "ajudaDeCusto=" + ajudaDeCusto + " salário total= " + salarioTotal;
+    }
+     
+   
+}
+    
+    
+
+
+public class Empregado extends Pessoa {
+    
+    private int codigoSetor; 
+    double salarioBase;
+    
+    public Empregado (String nome, String telefone, String endereco, int codigoSetor, double salarioBase){
+
+        super(nome, telefone, endereco);
+        this.codigoSetor = codigoSetor;
+        this.salarioBase = salarioBase;
+}
+
+    public int getCodigoSetor() {
+        return codigoSetor;
+    }
+
+    public void setCodigoSetor(int codigoSetor) {
+        this.codigoSetor = codigoSetor;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
+    }
+
+    public double getImposto() {
+        return salarioBase * 0.075;
+    }
+    public double calcularSalario(double salarioTotal){
+        return salarioBase - getImposto();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + " Ocupação= empregado " + "codigoSetor=" + codigoSetor + ", salarioBase=" + salarioBase + ", imposto=" + getImposto();
+    }
+    
+}
+
+*/
+public class Fornecedor extends Pessoa{
+    
+    private double valorCredito;
+    private double valorDivida;
+    private double saldo;
+    
+    public Fornecedor (String nome, String telefone, String endereco, double valorCredito, double valorDivida){
+        super(nome, telefone, endereco);
+        this.valorCredito = valorCredito;
+        this.valorDivida = valorDivida;
+    }
+
+    public double getValorCredito() {
+        return valorCredito;
+    }
+
+    public void setValorCredito(double valorCredito) {
+        this.valorCredito = valorCredito;
+    }
+
+    public double getValorDivida() {
+        return valorDivida;
+    }
+
+    public void setValorDivida(double valorDivida) {
+        this.valorDivida = valorDivida;
+    }
+    
+    public void obterSaldo(double saldo){
+        this.saldo = valorCredito - valorDivida;
+    }
+    
+}
+
+
+public class Operario extends Empregado{
+    
+    private double valorProducao;
+    private double comissao;
+    
+    public Operario (String nome, String telefone, String endereco, int codigoSetor, double salarioBase, double valorProducao, double comissao){
+    super(nome, telefone, endereco, codigoSetor, salarioBase);
+    this.valorProducao = valorProducao;
+    this.comissao = comissao;
+    }
+
+    public double getValorProducao() {
+        return valorProducao;
+    }
+
+    public void setValorProducao(double valorProducao) {
+        this.valorProducao = valorProducao;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
+    @Override
+     public double calcularSalario(double salarioTotal){
+        return salarioBase + comissao;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "ocupação= Operario " + "valorProducao=" + valorProducao + ", comissao=" + comissao;
+    }
+     
+}
+
+
+public class Pessoa {
+    
+    private String nome;
+    private String telefone;
+    private String endereco;
+    
+    
+    public Pessoa (String nome, String telefone, String endereco){
+    
+    this.nome = nome;
+    this.telefone = telefone;
+    this.endereco = endereco;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco;
+    }
+    
+   
+    
+    
+}
+
+
+public class Vendedor extends Empregado{
+    
+    private double valorVendas;
+    private double comissao;
+    
+    public Vendedor (String nome, String telefone, String endereco, int codigoSetor, double salarioBase, double valorVenda, double comissao){
+        super(nome, telefone, endereco, codigoSetor, salarioBase);
+        this.comissao = comissao;
+        this.valorVendas = valorVendas;
+    
+    }
+
+    public double getValorVendas() {
+        return valorVendas;
+    }
+
+    public void setValorVendas(double valorVendas) {
+        this.valorVendas = valorVendas;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
+
+   @Override
+     public double calcularSalario(double salarioTotal){
+        return salarioBase + comissao;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "ocupação= Vendedor" + "valorVendas=" + valorVendas + ", comissao=" + comissao;
+    }
+    
+   
+    
+}
